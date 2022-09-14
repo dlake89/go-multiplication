@@ -1,0 +1,12 @@
+resourceGroup: BHMNET_Sept22
+ACR: polyglot
+
+az acr create -n polyglot-container-registry -g BHMNET_Sept22 --sku basic
+az aks update -n PolyglotMeetup -g BHMNET_Sept22 --attach-acr polyglot
+
+docker login polyglot.azurecr.io
+docker build
+docker tag
+docker push
+
+kubectl apply -f polyglot-namespace.yaml

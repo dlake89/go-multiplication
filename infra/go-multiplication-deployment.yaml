@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-multiplication
+  namespace: polyglot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-multiplication
+  template:
+    metadata:
+      labels:
+        app: go-multiplication
+    spec:
+      nodeSelector:
+        kubernetes.io/os: linux
+      containers:
+        - name: go-multiplication
+          image: polyglot.azurecr.io/go-multiplication:v1
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: '0'
+              memory: '0'
+            limits:
+              cpu: '256'
+              memory: 1G
