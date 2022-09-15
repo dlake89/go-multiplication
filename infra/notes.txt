@@ -10,3 +10,12 @@ docker tag
 docker push
 
 kubectl apply -f polyglot-namespace.yaml
+
+
+# dotnet-calculator
+docker build . -t dotnet-calculator
+docker tag dotnet-calculator polyglot.azurecr.io/dotnet-calculator:v1
+docker push polyglot.azurecr.io/dotnet-calculator:v1
+
+kubectl apply -f dotnet-calculator-deployment.yaml
+kubectl apply -f dotnet-calculator-service.yaml
