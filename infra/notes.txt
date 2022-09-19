@@ -19,3 +19,12 @@ docker push polyglot.azurecr.io/dotnet-calculator:v1
 
 kubectl apply -f dotnet-calculator-deployment.yaml
 kubectl apply -f dotnet-calculator-service.yaml
+
+
+
+
+# Thoughts/things to show
+- Its interesting that azure creates another resource group
+prefixed with MC_ {managed cluster}
+
+- kubernetes proxy
