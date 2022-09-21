@@ -17,7 +17,7 @@ spec:
         kubernetes.io/os: linux
       containers:
         - name: go-multiplication
-          image: polyglot.azurecr.io/go-multiplication:v1
+          image: polyglot.azurecr.io/go-multiplication:v2
           ports:
             - containerPort: 8080
           resources:

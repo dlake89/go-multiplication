@@ -3,19 +3,22 @@ ACR: polyglot
 
 az acr create -n polyglot-container-registry -g BHMNET_Sept22 --sku basic
 az aks update -n PolyglotMeetup -g BHMNET_Sept22 --attach-acr polyglot
+az aks get-credentials --resource-group BHMNET_Sept22 --name PolyglotMeetup
 
 docker login polyglot.azurecr.io
-docker build
-docker tag
-docker push
+docker build . -t go-multiplication
+docker tag go-multiplication polyglot.azurecr.io/go-multiplication:v1
+docker push polyglot.azurecr.io/go-multiplication:v1
 
 kubectl apply -f polyglot-namespace.yaml
+kubectl apply -f go-multiplication-deployment.yaml -n polyglot
+kubectl apply -f go-multiplication-service.yaml -n polyglot
 
 
 # dotnet-calculator
 docker build . -t dotnet-calculator
-docker tag dotnet-calculator polyglot.azurecr.io/dotnet-calculator:v1
-docker push polyglot.azurecr.io/dotnet-calculator:v1
+docker tag dotnet-calculator polyglot.azurecr.io/dotnet-calculator:v2
+docker push polyglot.azurecr.io/dotnet-calculator:v2
 
 kubectl apply -f dotnet-calculator-deployment.yaml
 kubectl apply -f dotnet-calculator-service.yaml
@@ -24,7 +27,8 @@ kubectl apply -f dotnet-calculator-service.yaml
 
 
 # Thoughts/things to show
-- Its interesting that azure creates another resource group
-prefixed with MC_ {managed cluster}
-
+- Its interesting that azure creates another resource group prefixed with MC_ {managed cluster}
+- k9s
 - kubernetes proxy
+- coreDNS
+- metrics-server pod `kubectl top pod -n polyglot`
