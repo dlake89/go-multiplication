@@ -1,0 +1,13 @@
+# Calculator API
+
+This is a simple calculator API that allows you to perform basic arithmetic operations.
+
+## Endpoints
+
+### Addition
+
+**Endpoint:** `/add`
+
+**Method:** POST
+
+**Request Body:**
